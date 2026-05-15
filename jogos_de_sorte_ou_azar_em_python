@@ -40,7 +40,7 @@ class Dado(Jogo):
     print('Não pode roubar no dado...')
 
   def joga_jogo(self):
-    resultado = random.randit(1, 6)
+    resultado = random.randint(1, 6)
 
     super().set_resultado(resultado)
 
