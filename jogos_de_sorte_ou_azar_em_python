@@ -1,151 +1,69 @@
-{
-  "nbformat": 4,
-  "nbformat_minor": 0,
-  "metadata": {
-    "colab": {
-      "provenance": [],
-      "authorship_tag": "ABX9TyP1FFL756kxwmSzCairx4mD",
-      "include_colab_link": true
-    },
-    "kernelspec": {
-      "name": "python3",
-      "display_name": "Python 3"
-    },
-    "language_info": {
-      "name": "python"
-    }
-  },
-  "cells": [
-    {
-      "cell_type": "markdown",
-      "metadata": {
-        "id": "view-in-github",
-        "colab_type": "text"
-      },
-      "source": [
-        "<a href=\"https://colab.research.google.com/github/daygool10/Jogos_de_sorte_ou_azar/blob/main/jogos_de_sorte_ou_azar_em_python\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "execution_count": 9,
-      "metadata": {
-        "id": "Z5vc7W6thaoG"
-      },
-      "outputs": [],
-      "source": [
-        "from abc import ABC, abstractmethod\n",
-        "import random\n",
-        "\n",
-        "class Jogo(ABC):\n",
-        "\n",
-        "  def __init__(self):\n",
-        "    self._aposta = 0\n",
-        "    self._resultado = 0\n",
-        "\n",
-        "  def set_aposta(self, aposta):\n",
-        "    self._aposta = aposta\n",
-        "\n",
-        "  def set_resultado(self, resultado):\n",
-        "    self._resultado = resultado\n",
-        "\n",
-        "  @abstractmethod\n",
-        "\n",
-        "  def joga_jogo(self):\n",
-        "    pass\n",
-        "\n",
-        "  def mostra_resultado(self):\n",
-        "    print(f'Aposta: {self._aposta}')\n",
-        "    print(f'Resultado: {self._resultado}')\n",
-        "\n",
-        "    if self._aposta == self._resultado:\n",
-        "      print('Você venceu!')\n",
-        "    else:\n",
-        "      print('Tente novamente...')\n",
-        "\n"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "class Dado(Jogo):\n",
-        "  def set_aposta(self, aposta):\n",
-        "    if aposta > 6 or aposta < 1:\n",
-        "      print('Valor inválido para o dado!')\n",
-        "    else:\n",
-        "      super().set_aposta(aposta)\n",
-        "\n",
-        "\n",
-        "  def set_resultado(self, resultado):\n",
-        "    print('Não pode roubar no dado...')\n",
-        "\n",
-        "  def joga_jogo(self):\n",
-        "    resultado = random.randit(1, 6)\n",
-        "\n",
-        "    super().set_resultado(resultado)"
-      ],
-      "metadata": {
-        "id": "Gy894nF3ll51"
-      },
-      "execution_count": 14,
-      "outputs": []
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "class Roleta(Jogo):\n",
-        "\n",
-        "  def set_aposta(self, aposta):\n",
-        "    if aposta > 36 or aposta < 1:\n",
-        "      print('Valor inválido para a roleta!')\n",
-        "    else:\n",
-        "      super().set_aposta(aposta)\n",
-        "\n",
-        "\n",
-        "  def set_resultado(self, resultado):\n",
-        "    print('Não pode roubar na roleta!')\n",
-        "\n",
-        "  def joga_jogo(self):\n",
-        "    resultado = random.randint(1, 36)\n",
-        "\n",
-        "    super().set_resultado(resultado)"
-      ],
-      "metadata": {
-        "id": "U9Qs_u1fnneM"
-      },
-      "execution_count": 15,
-      "outputs": []
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "d1 = Dado()\n",
-        "r1 = Roleta()\n",
-        "\n",
-        "r1.joga_jogo()\n",
-        "r1.set_aposta(15)\n",
-        "r1.mostra_resultado()\n",
-        "\n"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "id": "ww6nryEMpeAz",
-        "outputId": "fdee9262-680f-42ce-f61c-e0cb48c73fb2"
-      },
-      "execution_count": 16,
-      "outputs": [
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": [
-            "Aposta: 15\n",
-            "Resultado: 34\n",
-            "Tente novamente...\n"
-          ]
-        }
-      ]
-    }
-  ]
-}
+
+from abc import ABC, abstractmethod
+import random
+
+class Jogo(ABC):
+
+  def __init__(self):
+    self._aposta = 0
+    self._resultado = 0
+
+  def set_aposta(self, aposta):
+    self._aposta = aposta
+
+  def set_resultado(self, resultado):
+    self._resultado = resultado
+
+  @abstractmethod
+
+  def joga_jogo(self):
+    pass
+
+  def mostra_resultado(self):
+    print(f'Aposta: {self._aposta}')
+    print(f'Resultado: {self._resultado}')
+
+    if self._aposta == self._resultado:
+      print('Você venceu!')
+    else:
+      print('Tente novamente...')
+
+class Dado(Jogo):
+  def set_aposta(self, aposta):
+    if aposta > 6 or aposta < 1:
+      print('Valor inválido para o dado!')
+    else:
+      super().set_aposta(aposta)
+
+
+  def set_resultado(self, resultado):
+    print('Não pode roubar no dado...')
+
+  def joga_jogo(self):
+    resultado = random.randit(1, 6)
+
+    super().set_resultado(resultado)
+
+class Roleta(Jogo):
+
+  def set_aposta(self, aposta):
+    if aposta > 36 or aposta < 1:
+      print('Valor inválido para a roleta!')
+    else:
+      super().set_aposta(aposta)
+
+
+  def set_resultado(self, resultado):
+    print('Não pode roubar na roleta!')
+
+  def joga_jogo(self):
+    resultado = random.randint(1, 36)
+
+    super().set_resultado(resultado)
+
+d1 = Dado()
+r1 = Roleta()
+
+r1.joga_jogo()
+r1.set_aposta(15)
+r1.mostra_resultado()
