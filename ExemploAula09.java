@@ -1,13 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
-package com.mycompany.exemploaula09;
-
-/**
- *
- * @author daiane.rocha2
- */
 public class ExemploAula09 {
 
     public static void main(String[] args) {
